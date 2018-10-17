@@ -52,44 +52,46 @@ rssi_prev2 = -255
 near_cmd = 'br -n 1'
 far_cmd = 'br -f 1'
 
-dagar_addr = 'E4:2B:34:4F:A8:10'
+phone_addr = '00:17:53:9E:80:D2'
 
 debug = 1
 
 while True:
     # get rssi reading for address
-    rssi = bluetooth_rssi(dagar_addr)
+    rssi = bluetooth_rssi(phone_addr)
 
     if debug:
-        print datetime.datetime.now(), rssi, rssi_prev1, rssi_prev2, far, far_count
+        print datetime.datetime.now(), rssi, far ##rssi_prev1, rssi_prev2, far_count
 
 
     if rssi == rssi_prev1 == rssi_prev2 == None:
         print datetime.datetime.now(), "can't detect address"
         time.sleep(0)
 
-    elif rssi == rssi_prev1 == rssi_prev2 == 0:
+    elif rssi < -30 and rssi_prev1 < -30 and rssi_prev2 < -30:
         # change state if nearby
-        if far:
+        #if far:
             far = False
             far_count = 0
             os.system(near_cmd)
-            print datetime.datetime.now(), "changing to near"
+            
+            ##code here to ENTER sonos webserver
 			
 	    
             time.sleep(1)
 
-    elif rssi < -2 and rssi_prev1 < -2 and rssi_prev2 < -2:
+    elif rssi < -40 and rssi_prev1 < -40 and rssi_prev2 < -40:
         # if were near and single has been consisitenly low
 
-        # need 10 in a row to set to far
+        # need 10 (might want to change this to be higher for our app. count of 10 is relatively low, meaning super short time, like 5 seconds) in a row to set to far
         far_count += 1
-        if not far and far_count > 10:
+        if not far and far_count > 100: ##trying count of 100 for sonos application
             # switch state to far
             far = True
             far_count = 0
             os.system(far_cmd)
-            print datetime.datetime.now(), "changing to far"
+            
+            ##code here to EXIT sonos webserver
 	    
             time.sleep(1)
 
