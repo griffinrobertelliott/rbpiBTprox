@@ -68,7 +68,7 @@ while True:
         print datetime.datetime.now(), "can't detect address"
         time.sleep(0)
 
-    elif rssi > -10: # and rssi_prev1 > -35 and rssi_prev2 > -40:
+    elif rssi > -9: # and rssi_prev1 > -35 and rssi_prev2 > -40:
         # change state if nearby
         #if far:
         near_count += 1
@@ -77,7 +77,7 @@ while True:
             far = False
             if near_count == 50:
                 #resp = requests.get('https://sonos-flow.now.sh/flow/enter/Downstairs/CNN (US News)')
-                resp = requests.get('http://Brandens-Macbook-Pro-2.local:5000/flow/enter/Upstairs')
+                resp = requests.get('http://Griffins-Macbook-Pro.local:5000/flow/enter/Upstairs')
                 print 'Made the call!'
                 print 'Status Code: %i' % resp.status_code
             
@@ -86,11 +86,11 @@ while True:
 	    
             time.sleep(0.5)
             
-    elif rssi < -10 and near_count < 25:
+    elif rssi < -9 and near_count < 25:
         near_count = 0
             
 
-    elif rssi < -13: #and rssi_prev1 < -40 and rssi_prev2 < -40:
+    elif rssi < -12: #and rssi_prev1 < -40 and rssi_prev2 < -40:
         # if were near and single has been consisitenly low
 
         # need 10 (might want to change this to be higher for our app. count of 10 is relatively low, meaning super short time, like 5 seconds) in a row to set to far
@@ -102,7 +102,7 @@ while True:
             #resp = requests.get('http://192.168.86.96:5000/flow/exit/Downstairs')
             if far_count == 50:
                 #resp = requests.get('https://sonos-flow.now.sh/flow/exit/Downstairs')
-                resp = requests.get('http://Brandens-Macbook-Pro-2.local:5000/flow/exit/Upstairs')
+                resp = requests.get('http://Griffins-Macbook-Pro.local:5000/flow/exit/Upstairs')
                 print 'Made the call!'
                 print 'Status Code: %i' % resp.status_code
             far_count = 0
