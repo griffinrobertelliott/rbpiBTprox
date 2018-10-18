@@ -77,7 +77,7 @@ while True:
             far = False
             #resp = requests.get('http://192.168.86.96:5000/flow/enter/Downstairs')
             if near_count == 50:
-                resp = requests.get('https://sonos-flow.now.sh/flow/enter/Downstairs')
+                resp = requests.get('https://sonos-flow.now.sh/flow/enter/Downstairs/CNN (US News)')
                 print 'Made the call!'
                 print 'Status Code: %i' % resp.status_code
                 time.sleep(2)
@@ -91,7 +91,7 @@ while True:
         near_count = 0
             
 
-    elif rssi < -14: #and rssi_prev1 < -40 and rssi_prev2 < -40:
+    elif rssi < -13: #and rssi_prev1 < -40 and rssi_prev2 < -40:
         # if were near and single has been consisitenly low
 
         # need 10 (might want to change this to be higher for our app. count of 10 is relatively low, meaning super short time, like 5 seconds) in a row to set to far
