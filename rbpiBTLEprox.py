@@ -75,17 +75,16 @@ while True:
         far_count = 0
         if far and near_count >= 50:
             far = False
-            #resp = requests.get('http://192.168.86.96:5000/flow/enter/Downstairs')
             if near_count == 50:
-                resp = requests.get('https://sonos-flow.now.sh/flow/enter/Downstairs/CNN (US News)')
+                #resp = requests.get('https://sonos-flow.now.sh/flow/enter/Downstairs/CNN (US News)')
+                resp = requests.get('http://Brandens-Macbook-Pro-2.local:5000/flow/enter/Downstairs')
                 print 'Made the call!'
                 print 'Status Code: %i' % resp.status_code
-                time.sleep(2)
             
             ##code here to ENTER sonos webserver
 			
 	    
-            time.sleep(1)
+            time.sleep(0.5)
             
     elif rssi < -10 and near_count < 25:
         near_count = 0
@@ -102,13 +101,13 @@ while True:
             near_count = 0
             #resp = requests.get('http://192.168.86.96:5000/flow/exit/Downstairs')
             if far_count == 50:
-                resp = requests.get('https://sonos-flow.now.sh/flow/exit/Downstairs')
+                #resp = requests.get('https://sonos-flow.now.sh/flow/exit/Downstairs')
+                resp = requests.get('http://Brandens-Macbook-Pro-2.local:5000/flow/exit/Downstairs')
                 print 'Made the call!'
                 print 'Status Code: %i' % resp.status_code
-                time.sleep(2)
             far_count = 0
             
-            time.sleep(1)
+            time.sleep(0.5)
 
     else:
         far_count = 0
